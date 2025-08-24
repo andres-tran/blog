@@ -10,3 +10,4 @@ A fun and colorful static blog showcasing a light/dark mode toggle using vanilla
 - Light/dark theme toggle with persistence and system preference support
 - Responsive layout for small screens
 - Four sample posts to get you started
+- Search bar powered by the OpenAI API (requires `OPENAI_API_KEY`)
