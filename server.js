@@ -1,4 +1,7 @@
 const express = require('express');
+// Use the built-in fetch in newer versions of Node.
+// Fall back to `node-fetch` when running on older runtimes where `fetch` is undefined.
+const fetch = global.fetch || ((...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args)));
 
 const app = express();
 app.use(express.json());
