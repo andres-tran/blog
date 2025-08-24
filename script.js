@@ -28,30 +28,17 @@ toggleBtn.addEventListener('click', () => {
 async function performSearch() {
   const query = searchInput.value.trim();
   if (!query) return;
-  let apiKey = localStorage.getItem('openai_api_key');
-  if (!apiKey) {
-    apiKey = prompt('Enter your OpenAI API key');
-    if (!apiKey) return;
-    localStorage.setItem('openai_api_key', apiKey);
-  }
   searchResults.textContent = 'Searching...';
   try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const response = await fetch('/api/search', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
       },
-      body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
-        messages: [
-          { role: 'system', content: 'You help users search a playful blog with concise answers.' },
-          { role: 'user', content: query },
-        ],
-      }),
+      body: JSON.stringify({ query }),
     });
     const data = await response.json();
-    const answer = data.choices?.[0]?.message?.content?.trim();
+    const answer = data.answer?.trim();
     searchResults.textContent = answer || 'No results found.';
   } catch (err) {
     console.error(err);
