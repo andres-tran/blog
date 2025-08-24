@@ -25,6 +25,13 @@ app.post('/api/search', async (req, res) => {
         input: query,
       }),
     });
+
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}));
+      const message = errData.error?.message || errData.error || 'Error fetching results';
+      return res.status(response.status).json({ error: message });
+    }
+
     const data = await response.json();
 
     let answer = data.output_text?.trim();
@@ -40,7 +47,7 @@ app.post('/api/search', async (req, res) => {
     res.json({ answer });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Error fetching results' });
+    res.status(500).json({ error: err.message || 'Error fetching results' });
   }
 });
 
