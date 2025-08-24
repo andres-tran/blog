@@ -9,6 +9,9 @@ app.use(express.json());
 app.post('/api/search', async (req, res) => {
   const { query } = req.body;
   if (!query) return res.status(400).json({ error: 'Missing query' });
+  if (!process.env.OPENAI_API_KEY) {
+    return res.status(500).json({ error: 'Missing API key' });
+  }
   try {
     const response = await fetch('https://api.openai.com/v1/responses', {
       method: 'POST',
@@ -17,7 +20,7 @@ app.post('/api/search', async (req, res) => {
         'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'gpt-5',
+        model: 'gpt-4.1-mini',
         instructions: 'Provide concise answers to help users search a playful blog.',
         input: query,
       }),
