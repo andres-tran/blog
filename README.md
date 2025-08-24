@@ -10,4 +10,10 @@ A fun and colorful static blog showcasing a light/dark mode toggle using vanilla
 - Light/dark theme toggle with persistence and system preference support
 - Responsive layout for small screens
 - Four sample posts to get you started
-- Search bar powered by the OpenAI API (requires an API key)
+- Search bar powered by the OpenAI API via a backend proxy (set `OPENAI_API_KEY` and run the server)
+
+## Running locally
+
+1. Install dependencies with `npm install`.
+2. Set your OpenAI API key in the `OPENAI_API_KEY` environment variable.
+3. Start the server with `npm start` and open the site in your browser.
