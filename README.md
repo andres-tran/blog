@@ -5,6 +5,8 @@ A fun and colorful static blog showcasing a light/dark mode toggle using vanilla
 ## Features
 - Playful design with vibrant accents
 - Hero banner highlighting creativity
+- Navigation bar with quick links
+- Grid-based post layout for easier browsing
 - Light/dark theme toggle with persistence and system preference support
 - Responsive layout for small screens
-- Sample posts to get you started
+- Four sample posts to get you started
