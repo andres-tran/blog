@@ -19,9 +19,14 @@
         <li><a href="#">Contact</a></li>
       </ul>
     </nav>
-    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    <div class="header-actions">
+      <input id="search-input" type="text" placeholder="Ask the blog..." aria-label="Search" />
+      <button id="search-btn" aria-label="Search posts">🔍</button>
+      <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
   </header>
   <main>
+    <section id="search-results" class="search-results"></section>
     <section class="hero">
       <h2>Unleash Your Creativity</h2>
       <p>Fresh ideas and colorful stories await.</p>
