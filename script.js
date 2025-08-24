@@ -38,11 +38,14 @@ async function performSearch() {
       body: JSON.stringify({ query }),
     });
     const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error || 'Error fetching results.');
+    }
     const answer = data.answer?.trim();
     searchResults.textContent = answer || 'No results found.';
   } catch (err) {
     console.error(err);
-    searchResults.textContent = 'Error fetching results.';
+    searchResults.textContent = err.message || 'Error fetching results.';
   }
 }
 
