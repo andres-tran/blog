@@ -36,12 +36,14 @@ app.post('/api/search', async (req, res) => {
 
     let answer = data.output_text?.trim();
     if (!answer) {
-      answer = data.output
-        ?.map((item) =>
-          item.content?.map((c) => c.text || '').join('')
+      answer = (data.output || [])
+        .map((item) =>
+          (item.content || [])
+            .map((c) => c.text || '')
+            .join('')
         )
-        ?.join('')
-        ?.trim();
+        .join('')
+        .trim();
     }
 
     res.json({ answer });
