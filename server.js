@@ -26,14 +26,17 @@ app.post('/api/search', async (req, res) => {
       }),
     });
     const data = await response.json();
-    const answer =
-      data.output_text?.trim() ||
-      data.output
+
+    let answer = data.output_text?.trim();
+    if (!answer) {
+      answer = data.output
         ?.map((item) =>
           item.content?.map((c) => c.text || '').join('')
         )
-        .join('')
-        .trim();
+        ?.join('')
+        ?.trim();
+    }
+
     res.json({ answer });
   } catch (err) {
     console.error(err);
